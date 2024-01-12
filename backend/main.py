@@ -1,6 +1,7 @@
 from fastapi import FastAPI
+from core.config import settings
 
-app = FastAPI()
+app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION)
 
 
 @app.get("/")
@@ -8,6 +9,6 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+@app.get("/hello/")
+async def hello():
+    return {"message": "Hello FastAPI"}
